@@ -1,18 +1,81 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NETCoreMVC_Notlarim.Models;
+using NETCoreMVC_Notlarim.Models.ViewModels;
+using System.Text.Json;
 
 namespace NETCoreMVC_Notlarim.Controllers
 {
     public class ProductController : Controller
     {
+        public IActionResult Index() 
+        {
+            //                                   ----VERI TASIMA KONTROLLERI----
+            // MODEL BAZLI GONDERIM ;
+            var products = new List<Product>()
+            {
+                new Product {Id=1,ProductName="A PRODUCT",Quantity=10},
+                new Product {Id=2,ProductName="B PRODUCT",Quantity=10},
+                new Product {Id=3,ProductName="C PRODUCT",Quantity=10}
+            };
+            //return View(products); 
+
+            // VIEWBAG ILE GONDERIM ;
+            // VIEWE GONDERILECEK DATAYI DYNAMIC BIR DEGISKENLE TASIMAMIZI SAGLAYAN BIR VERI TASIMA KONTROLUDUR.
+            ViewBag.products = products; // ViewBag.x = products;
+
+            // VIEWDATA ILE GONDERIM ;
+            // VIEWVBAGDE OLDUGU GIBI ACTIONDAKI DATAYI VIEWE TASIMAMIZI SAGLAYAN KONTROLDUR
+            // DATAYI BOXING EDEREK TASIR
+            ViewData["products"] = products;
+
+            // TEMPDATA ILE GONDERIM ;
+            // VIEWVDATADA OLDUGU GIBI ACTIONDAKI DATAYI VIEWE TASIMAMIZI SAGLAYAN KONTROLDUR
+            // DATAYI BOXING EDEREK TASIR
+            // ACTIONLAR ARASINDA VERI TASIMAMIZI SAGLAR
+
+            var data = JsonSerializer.Serialize(products);
+            TempData["products"] = data;
+            return RedirectToAction("Index2");
+        }
+        public IActionResult Index2() 
+        {
+            //KOMPLEX TYPE ISE SERIALIZE EDILMESI GEREKLIDIR
+            var data = TempData["products"].ToString();
+            JsonSerializer.Deserialize<List<Product>>(data);
+            return View();
+        }
         public IActionResult GetProducts()
         {
-            Product product = new Product();
-            return View();
+            Product product = new Product()
+            {
+                Id = 1,
+                ProductName = "A Product",
+                Quantity = 15
+            };
+            User user = new User()
+            {
+                Id = 1,
+                Name = "furkan",
+                LastName = "anil"
+            };
+            //VIEWMODEL YONTEMI
+
+            //UserProduct userProduct = new UserProduct()
+            //{
+            //    User = user,
+            //    Product = product,
+            //};
+            //return View(userProduct);
+
+            //TUPLE YONTEMI
+
+            var userProduct = (product, user);
+
+            return View(userProduct);
         }
 
 
-        //              ----ACTION TURLERI----
+        //                                   ----ACTION TURLERI----
 
         //public ViewResult GetProducts()
         //{
@@ -44,7 +107,8 @@ namespace NETCoreMVC_Notlarim.Controllers
         //    //IActionResult ve ActionResult ACTION TURLERININ ATASIDIR.
         //    return View();
         //}
-        //              ----NonAction ve NonController Attributeları-----
+        //
+        //                              ----NonAction ve NonController Attributeları-----
 
         // Controller ICERISINDE [NonAction] ILE ISARETLENEN METHODLAR REQUEST ALMAZLAR YANI IS MANTIGI TURUTEN BIR METHODTUR.
         // [NonController] ILE ISARETLENEN Sınıflar REQUEST ALMAZLAR. SADACE BIR SINIF OLURLAR

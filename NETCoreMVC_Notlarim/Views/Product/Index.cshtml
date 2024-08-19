@@ -1,0 +1,33 @@
+﻿@model List<NETCoreMVC_Notlarim.Models.Product>
+
+   -MODEL BAZLI-
+<ul>
+    @foreach (var item in @Model)
+    {
+        <li>@item.ProductName</li>
+    }
+</ul> 
+
+    -VIEWBAG-
+<ul>
+    @foreach (var item in ViewBag.products as List<NETCoreMVC_Notlarim.Models.Product>)
+    {
+        <li>@item.ProductName</li>
+    }
+</ul> 
+
+    -VIEWDATA-
+<ul>
+    @foreach (var item in ViewData["products"] as List<NETCoreMVC_Notlarim.Models.Product>) //unboxing edildi
+    {
+        <li>@item.ProductName</li>
+    }
+</ul>
+
+    -TEMPDATA-
+<ul>
+    @foreach (var item in TempData["products"] as List<NETCoreMVC_Notlarim.Models.Product>) //unboxing edildi
+    {
+        <li>@item.ProductName</li>
+    }
+</ul>
