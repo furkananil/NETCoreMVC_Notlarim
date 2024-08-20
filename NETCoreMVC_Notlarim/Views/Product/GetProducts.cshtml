@@ -1,4 +1,5 @@
-﻿@* @model NETCoreMVC_Notlarim.Models.ViewModels.UserProduct
+﻿@using NETCoreMVC_Notlarim.Extensions
+@* @model NETCoreMVC_Notlarim.Models.ViewModels.UserProduct
 
 <h3>@Model.Product.ProductName</h3>
 <h3>@Model.User.Name</h3> *@
@@ -7,3 +8,11 @@
 
 <h3>@Model.p.ProductName</h3>
 <h3>@Model.u.Name</h3>
+
+@*@Html.Partial("~/Views/Product/Partials/ListPartial.cshtml") ILE LISTPARTIAL.CSHTML DE RENDER EDILIR
+    BURAYA GELEN VERILERDE LISTPARTIAL.CSHTMLE TASINIR ORNEK CONTROLLERDE ;
+    ViewBag.Mesaj = "MERHABA"; YAZARSAK LISTPARTIAL.CSHTMLDE CAGIRABILIRIZ.
+    MESELA VIEWDE USER MODELI IKEN PARTIALVIEWDE USER MODELI KULLANMAK ISTERSEK;
+    @Html.Partial("~/Views/Product/Partials/ListPartial.cshtml", new User())
+    @Html.CustomTextBox("txtCustomAdi",null,"Adiniz")
+*@

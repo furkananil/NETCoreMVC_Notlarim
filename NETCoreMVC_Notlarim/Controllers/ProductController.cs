@@ -107,10 +107,29 @@ namespace NETCoreMVC_Notlarim.Controllers
         //    //IActionResult ve ActionResult ACTION TURLERININ ATASIDIR.
         //    return View();
         //}
-        //
+
         //                              ----NonAction ve NonController Attributeları-----
 
         // Controller ICERISINDE [NonAction] ILE ISARETLENEN METHODLAR REQUEST ALMAZLAR YANI IS MANTIGI TURUTEN BIR METHODTUR.
         // [NonController] ILE ISARETLENEN Sınıflar REQUEST ALMAZLAR. SADACE BIR SINIF OLURLAR
+
+        //                              ----UrlHelper / HtmlHelper / TagHelper-----
+
+        //  URLHELPER;
+        //  Url.Action("index,"product",new { id = 5}); VERILEN CONTROLLER VE ACTIONA AIT URL OLUSTURMAYI SAGLAR
+        //  Url.ActionLink("index,"product",new { id = 5}); VERIELN CONTROLLER VE ACTIONA AIT URL OLUSTURMAYI SAGLAR
+        //  HOST PORT BILGISINI TASIR.
+        //  Url.Content("/site.css"); CSS,SCRIPT GIBI DOSYALARI TARIF ETMEK ICIN KULLANIRIZ.
+        //  Url.RouteUrl("Default"); MIMARIDE TANIMLI OLAN ROUTE ISIMLERINE UYGUN BIR SEKILDE URL OLUSTURUR.
+        //  Url.ActionContext; O ANKI URLE AIT TUM BILGILERI GETIRIR.
+
+        //  HTMLHELPER;
+        //  @Html.Partial("/Views/Product/Index.cshtml") VIEWDEN HEDEF VIEWI RENDER ETMEMIZI SAGLAYAN BIR FONKSIYONDUR
+        //  @{Html.RenderPartial("/Views/Product/Index.cshtml");} VIEWDEN HEDEF VIEWI RENDER ETMEMIZI SAGLAYAN BIR FONKSIYONDUR
+        //  VOID DONDURDUGU ICIN DAHA HIZLIDIR.
+        //  @Html.ActionLink("Anasayfa","Index","Home") a href olusturur.
+        //  @Html.TextBox("txtAdi",null, new { style= "background-color:green; color=white;"})
+
+
     }
 }
