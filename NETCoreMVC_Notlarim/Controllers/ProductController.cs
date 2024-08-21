@@ -130,6 +130,9 @@ namespace NETCoreMVC_Notlarim.Controllers
         //  @Html.ActionLink("Anasayfa","Index","Home") a href olusturur.
         //  @Html.TextBox("txtAdi",null, new { style= "background-color:green; color=white;"})
 
+        //  TAGHELPER;
+
+
 
     }
 }

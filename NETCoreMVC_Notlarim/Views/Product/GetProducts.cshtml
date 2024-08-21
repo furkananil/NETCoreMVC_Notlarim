@@ -1,4 +1,6 @@
-﻿@using NETCoreMVC_Notlarim.Extensions
+﻿@addTagHelper * ,Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper * , NETCoreMVC_Notlarim
+@using NETCoreMVC_Notlarim.Extensions
 @* @model NETCoreMVC_Notlarim.Models.ViewModels.UserProduct
 
 <h3>@Model.Product.ProductName</h3>
@@ -16,3 +18,18 @@
     @Html.Partial("~/Views/Product/Partials/ListPartial.cshtml", new User())
     @Html.CustomTextBox("txtCustomAdi",null,"Adiniz")
 *@
+
+@* @Html.BeginForm("Index","Product",FormMethod.Post);
+<form asp-action="Index" asp-controller="Product" method="post">
+
+    @Html.TextBox("txtBox")
+    <input type="text"/>
+   
+    <cache>
+        Cache : @DateTime.Now
+    </cache>
+    <partial name="~ /Views/Product/Partials/ListPartial.cshtml"></partial>
+</form> *@
+
+    <a href="mailto:furkananil960@gmail.com">email</a>
+    <email a="abc" mail="furkananil960@gmail.com" display="FURKAN ANIL MAILI"></email>
