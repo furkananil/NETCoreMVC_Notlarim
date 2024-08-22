@@ -73,7 +73,22 @@ namespace NETCoreMVC_Notlarim.Controllers
 
             return View(userProduct);
         }
-
+        
+        public IActionResult CreateProduct()
+        {
+            var product = new Product(); //burada olusturdugumuz nesne islenmis olacaktir yeni nesne olusturulmayacaktir.
+            return View(product);
+        }
+        //[HttpPost]
+        //public IActionResult CreateProduct(string txtProductName,string txtQuantity) 
+        //{
+        //    return View();
+        //}
+        [HttpPost]
+        public IActionResult CreateProduct(Product product)
+        {
+            return View();
+        }
 
         //                                   ----ACTION TURLERI----
 
@@ -130,7 +145,9 @@ namespace NETCoreMVC_Notlarim.Controllers
         //  @Html.ActionLink("Anasayfa","Index","Home") a href olusturur.
         //  @Html.TextBox("txtAdi",null, new { style= "background-color:green; color=white;"})
 
-        //  TAGHELPER;
+        //  MODELBINDING;
+        //  KULLANICININ GIRDIGI DATALARI CONTROLLERDA KENDIMIZE AIT TURLERDE YAKALAMAK ISTEDIGIMIZDE KULLANIRIZ
+        //  GONDERILEN DATA TANIMLADIGIMIZ TURE DONUSUR VE ILGILI SINIFIN ISTANCESI UZERINDEN VERIYI YONETIRIZ.
 
 
 
