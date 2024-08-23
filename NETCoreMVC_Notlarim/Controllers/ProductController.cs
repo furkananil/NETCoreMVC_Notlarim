@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NETCoreMVC_Notlarim.Models;
 using NETCoreMVC_Notlarim.Models.ViewModels;
+using System.Reflection;
 using System.Text.Json;
 
 namespace NETCoreMVC_Notlarim.Controllers
@@ -13,9 +14,9 @@ namespace NETCoreMVC_Notlarim.Controllers
             // MODEL BAZLI GONDERIM ;
             var products = new List<Product>()
             {
-                new Product {Id=1,ProductName="A PRODUCT",Quantity=10},
-                new Product {Id=2,ProductName="B PRODUCT",Quantity=10},
-                new Product {Id=3,ProductName="C PRODUCT",Quantity=10}
+                new Product {ProductName="A PRODUCT",Quantity=10},
+                new Product {ProductName="B PRODUCT",Quantity=10},
+                new Product {ProductName="C PRODUCT",Quantity=10}
             };
             //return View(products); 
 
@@ -48,7 +49,6 @@ namespace NETCoreMVC_Notlarim.Controllers
         {
             Product product = new Product()
             {
-                Id = 1,
                 ProductName = "A Product",
                 Quantity = 15
             };
@@ -73,22 +73,114 @@ namespace NETCoreMVC_Notlarim.Controllers
 
             return View(userProduct);
         }
-        
-        public IActionResult CreateProduct()
-        {
-            var product = new Product(); //burada olusturdugumuz nesne islenmis olacaktir yeni nesne olusturulmayacaktir.
-            return View(product);
-        }
+
+        //public IActionResult CreateProduct()
+        //{
+        //    var product = new Product(); //burada olusturdugumuz nesne islenmis olacaktir yeni nesne olusturulmayacaktir.
+        //    return View(product);
+        //}
+        ////[HttpPost]
+        ////public IActionResult CreateProduct(string txtProductName,string txtQuantity) 
+        ////{
+        ////    return View();
+        ////}
         //[HttpPost]
-        //public IActionResult CreateProduct(string txtProductName,string txtQuantity) 
+        //public IActionResult CreateProduct(Product product)
         //{
         //    return View();
         //}
-        [HttpPost]
-        public IActionResult CreateProduct(Product product)
-        {
-            return View();
-        }
+
+        //                                   ----KULLANICIDAN VERI ALMA YONTEMLERI----
+
+        //  FORM ILE VERI ALMA                    
+
+        //1
+        //[HttpPost]
+        //public IActionResult VeriAl(IFormCollection datas)
+        //{
+        //    var value1 = datas["txtValue1"].ToString();
+        //    var value2 = datas["txtValue2"].ToString();
+        //    var value3 = datas["txtValue3"].ToString();
+        //    return View();
+        //}
+
+        //2
+        //[HttpPost]
+        //public IActionResult VeriAl(string txtValue1, string txtValue2, string txtValue3)
+        //{
+        //    return View();
+        //}
+
+        //3
+        //public class Model
+        //{
+        //    public string txtValue1 { get; set; }
+        //    public string txtValue2 { get; set; }
+        //    public string txtValue3 { get; set; }
+        //}
+
+        //[HttpPost]
+        //public IActionResult VeriAl(Model model)
+        //{
+        //    return View();
+        //}
+
+        //4
+        //[HttpPost]
+        //public IActionResult VeriAl(Product product) //AYNI PROPLARI ICEREN FARKLI BIR SINIFLADA KARSILANABILIR
+        //{
+        //    return View();
+        //}
+
+        //  QUERYSTRING ILE VERI ALMA ; GUVENLIK GEREKTIRMEYEN BILGILERIN URL UZERINDE TASINMASI ICIN KULLANILIR
+
+        //1
+        //  localhost/product/verial?a=4&b=furkan
+        //public IActionResult VeriAl(string a,string b)
+        //{
+        //    return View();
+        //}
+
+        //2
+        //public class QueryString
+        //{
+        //    public int A { get; set; }
+        //    public string B { get; set; }
+        //    public IActionResult VeriAl(QueryString qs)
+        //}
+
+        //3
+        //public IActionResult VeriAl()
+        //{
+        //    var qs = Request.QueryString; //REQ YAPILAN ENDPOINTE QUERYSTRING PARAMETRESI EKLENIP EKLENMEDIGI ILE ALAKALI BILGI VERIR
+        //    var a = Request.Query["a"].ToString(); //QS DEGERLERINI DONER
+        //    var b = Request.Query["b"].ToString();
+        //    return View();
+        //}
+
+        //  ROUTE PARAMETRELERI UZERINDEN VERI ALMA ; QUERYSTRINGDEN BI NEBZEDE OLSUN DAHA GUVENLIDIR
+
+        //1
+        //public IActionResult VeriAl(string id) // ROUTEYE GORE ISIM AYNI OLAMAK ZORUNDA {controller}/{action}/{id?}
+        //{
+        //    var values = Request.RouteValues; //controller,action,id yakalanir
+        //    return View();
+        //}
+
+        //2
+        //public IActionResult VeriAl(string id,string a,string b) //CUSTOMROUTE verial/furkan/anil/1
+        //{
+        //    return View();
+        //}
+
+        //3
+        //public class RouteData
+        //{
+        //    public string A { get; set; }
+        //    public string B { get; set; }
+        //    public string Id { get; set; }
+        //    public IActionResult VeriAl(RouteData datas)
+        //}
 
         //                                   ----ACTION TURLERI----
 

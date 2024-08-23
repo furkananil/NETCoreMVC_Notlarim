@@ -10,18 +10,37 @@
     <button>Urun ekle</button>
 </form> *@
 
-<form asp-action="CreateProduct" asp-controller="Product" method="post">
+@* <form asp-action="CreateProduct" asp-controller="Product" method="post">
 
     <input type="text" asp-for="ProductName" name="ProductName" placeholder="Product Name" />
     <br />
     <input type="number" asp-for="Quantity" name="Quantity" placeholder="Quantity" />
     <br />
     <button>Urun ekle</button>
-</form>
+</form> *@
 @* @Html.TextBoxFor(p => p.ProductName ,"", new {
     placeholder="Product Name"
 })
 @Html.TextBoxFor(p => p.Quantity, "", new {
     placeholder = "Quantity",
-    type="number"
-}) *@
+    @* type="number" *@
+
+
+@*                                  KULLANICIDAN VERI ALMA YONTEMLERI 
+
+    -FORM ILE VERI ALMA *@
+
+@* <form asp-action="VeriAl" asp-controller="Product" method="post">
+    <input type="text" name="txtValue1"/> 
+    <input type="text" name="txtValue2"/>
+    <input type="text" name="txtValue3"/>
+    <button>GONDER</button>
+</form> *@
+@* <form asp-action="VeriAl" asp-controller="Product" method="post">
+    <input type="text" asp-for="ProductName" />
+    <input type="text" asp-for="Quantity" />
+    <button>GONDER</button>
+</form> *@
+
+    @* -ROUTE PARAMETRELERI ILE VERI ALMA *@
+@* <a asp-action="Index" asp-controller="Home" asp-route-a="furkan" asp-route-b="anil" asp-route-id="123" asp-route-x="routede yoksa querystring olarak yerlestirilecektir"></a> *@

@@ -18,5 +18,6 @@ app.MapGet("/", () => "Merhaba dünya...");
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapDefaultControllerRoute();
+    endpoints.MapControllerRoute("CustomRoute", "{controller=Home}/{action=Index}/{a}/{b}/{id}");
 });
 app.Run();
