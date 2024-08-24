@@ -182,6 +182,41 @@ namespace NETCoreMVC_Notlarim.Controllers
         //    public IActionResult VeriAl(RouteData datas)
         //}
 
+        //  HEADER UZERINDEN VERI ALMA
+
+        //public IActionResult VeriAl()
+        //{
+        //    var headers = Request.Headers; //POSTMAN UZERINDEN REQUEST ATTIK.
+        //    return View();
+        //}
+
+        //  AJAX TABANLI VERI ALMA
+
+        //public class AjaxData
+        //{
+        //    public string A { get; set; }
+        //    public string B { get; set; }
+        //}
+        //[HttpPost]
+        //public IActionResult VeriAl(AjaxData ajaxData)
+        //{
+        //    return View();
+        //}
+
+        //  TUPLE NESNE POST ETME VE YAKALAMA
+
+        //public IActionResult VeriAl()
+        //{
+        //    var tuple = (new Product(), new User());
+        //    return View();
+        //}
+        //[HttpPost]
+        //public IActionResult VeriAl([Bind(Prefix = "Item1")]Product product, [Bind(Prefix = "Item1")] User user)
+        //{
+        //    return View();
+        //}
+
+
         //                                   ----ACTION TURLERI----
 
         //public ViewResult GetProducts()

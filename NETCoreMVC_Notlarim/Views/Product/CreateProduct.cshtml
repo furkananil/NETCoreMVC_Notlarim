@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model NETCoreMVC_Notlarim.Models.Product
+@* @model NETCoreMVC_Notlarim.Models.Product *@
 
 @* <form asp-action="CreateProduct" asp-controller="Product" method="post">
 
@@ -44,3 +44,26 @@
 
     @* -ROUTE PARAMETRELERI ILE VERI ALMA *@
 @* <a asp-action="Index" asp-controller="Home" asp-route-a="furkan" asp-route-b="anil" asp-route-id="123" asp-route-x="routede yoksa querystring olarak yerlestirilecektir"></a> *@
+
+     @*  -AJAX TABANLI VERI ALMA *@
+
+@* <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<button id="btnGonder">GONDER</button>
+
+<script>
+    $("#btnGonder").click(() => {
+        $.post("https://localhost:5001/product/verial", {a: "a data" ,b: "b data"});
+    })
+</script> *@
+
+        @* -//  TUPLE NESNE POST ETME VE YAKALAMA *@
+
+@*         @model (NETCoreMVC_Notlarim.Models.Product p,NETCoreMVC_Notlarim.Models.User u)
+
+<form asp-action="CreateProduct" asp-controller="Product" method="post">
+
+    <input type="text" asp-for="p.ProductName" placeholder="Product Name"/>
+    <input type="text" asp-for="u.Name" placeholder="Name"/>
+    <button>gonder</button>
+</form> *@
