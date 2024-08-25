@@ -216,6 +216,30 @@ namespace NETCoreMVC_Notlarim.Controllers
         //    return View();
         //}
 
+        //                                   ----VALIDATIONS----
+
+        //[HttpPost]
+        //public IActionResult CreateProduct(Product model)
+        //{
+        //    //if(string.IsNullOrEmpty(model.ProductName) && model.ProductName.Length <= 100)
+        //    //{
+        //    //    // DOGRULAMALAR IF SWITCH ILE YAPILMAMALIDIR.
+        //    //}
+
+        //    //ModelState ; MVC DE BIR TYPEIN DATA ANNOTATIONSLARININ DURUMLARINI KONTROL EDEN VE GERIYE SONUC DONEN BIR PROP
+
+        //    if(!ModelState.IsValid)
+        //    {
+        //        //LOGLAMA , KULLANICI BILGILENDIRME ,
+        //        return View(model);//BUNU YAPARAK ASP-VALIDATION-FOR DAKI ERROR MESSAGEYI ALIR VE EKRANDA GOSTERIR
+        //    }
+
+        //    //DOGRULANMAYAN VALIDATIONLARI HATA MESAJI YAKALAMA;
+        //    ViewBag.HataMesaji = ModelState.Values.FirstOrDefault(X => X.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid).Errors[0].ErrorMessage;
+
+           
+        //    return View();
+        //}
 
         //                                   ----ACTION TURLERI----
 
