@@ -1,0 +1,23 @@
+﻿        
+@* DEGISKENLIK GOSTERMEYEN KODLAR BURAYA YAZILIR *@
+
+@* DEGISKENLIK GOSTEREN ALAN ISE @RenderBody() BURASI RENDER EDILEN VIEWDEN GELIR 
+    layout dosyasinda 1 tane bulunur
+*@
+
+@* DIGER .cshtml DOSYALARINDA ISE ;
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+YAZILIR.
+O DOSYADAKI KODLAR ISE _Layout.cshtmledeki RenderBody()ye YERLESTIRILIR
+*@ 
+
+@* @RenderSection("solmenu",false) //_Layout.cshtmlye yazilip
+//ilgili layoutu baz alan butun viewlerde kullanmak istemedigim icin false
+
+//ilgili .cshtmlye ise 
+@section solmenu{
+    kodlar
+} *@
