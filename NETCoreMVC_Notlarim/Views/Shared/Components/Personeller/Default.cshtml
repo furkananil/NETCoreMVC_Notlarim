@@ -1,0 +1,18 @@
+﻿@model List<Personel>
+
+@*
+    SONRA LAYOUT DOSYASINDA @await Component.InvokeAsync("Personeller")
+    yazilmalidir
+
+    ViewComponent sadece get (veri gondermede) calisir
+
+    @await Component.InvokeAsync("Personeller", new { id = 5 })
+    Invoke(int id) ile deger yakalanabilir
+    [NonViewComponent] ile isaretlersek viewcomponent olmaktan cikaririz
+*@
+
+@foreach(var person in Model)
+{
+    @person.Adi
+    @person.Soyadi
+}
