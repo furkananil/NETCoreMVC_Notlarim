@@ -2,8 +2,17 @@
 
 namespace NETCoreMVC_Notlarim.Controllers
 {
+    //ATTRIBUTE ROUTING
+
+    //[Route("[controller]/[action]")]
+    //[Route("anasayfa/[action]")]
+    //[Route("anasayfa")]
     public class HomeController : Controller
     {
+        //[Route("in")]
+        //[Route("in/{id?}")]
+        //[Route("in/{id:int?}")]
+        //Index(int? id)
         public IActionResult Index()
         {
             //var images = new List<string> { "img1.jpg", "img2.jpg", "img3.jpg" };
