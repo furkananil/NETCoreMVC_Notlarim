@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using NETCoreMVC_Notlarim.Constraints;
+using NETCoreMVC_Notlarim.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,5 +46,16 @@ app.UseEndpoints(endpoints =>
 
     //ATTRIBUTE ROUTING ICIN GEREKLI
     endpoints.MapControllers();
+
+    //CUSTOM ROUTE HANDLER;
+
+    //endpoints.Map("example-route", async c =>
+    //{
+    //    // https://localhost:5001/example-route endpointine gelen herhangi bir istek controllerden ziyade
+    //    // direkt olarak buradaki fonksiyon tarafindan karsilanacaktir
+    //});
+
+    endpoints.Map("example-route", new ExampleHandler().Handler()); // bu fonksiyon tarafindan karsilandi
+    //endpoints.Map("image/{fileName}", new ImageHandler().Handler());
 });
 app.Run();
