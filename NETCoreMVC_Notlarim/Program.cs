@@ -1,5 +1,7 @@
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using NETCoreMVC_Notlarim.Constraints;
+using NETCoreMVC_Notlarim.Extensions;
 using NETCoreMVC_Notlarim.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,3 +61,52 @@ app.UseEndpoints(endpoints =>
     //endpoints.Map("image/{fileName}", new ImageHandler().Handler());
 });
 app.Run();
+
+
+//  MIDDLEWARES ; REQUESTTEN RESPONSE KADAR OLAN ARADA OLUSAN ISLEMLERE DENILEBILIR
+//               MIDDLEWARELER SARMAL BIR SEKILDE TETIKLENIR, Use ile baslar, siralama onemlidir
+
+//  HAZIR MIDDLEWARES;
+
+//  RUN METHODU ; KENDISINDEN SONRA GELEN MWYI TETIKLEMEZ DOLAYISIYLA KENDISINDEN SONRAKI MWYI TETIKLEMEYECEGI ICIN AKIS KESILIR
+
+app.Run(async context => 
+{
+    Console.WriteLine("run mw");
+});
+
+//  Use METHODU ; SADE MWDIR. KENDISINDEN SONRAKI MWYI CAGIRIR
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("START USE MW");
+    await next.Invoke(); //bir sonraki mw cagirilir
+    Console.WriteLine("STOP USE MW");
+});
+app.Run(async context =>
+{
+    Console.WriteLine("START RUN MW");
+});
+
+//  Map METHODU ; PATHE GORE ISLEM YAPAR
+
+app.Map("/home", builder =>
+{
+    builder.Run(async c => await c.Response.WriteAsync("RUN MIDDLEWAREI TETIKLENDI"));
+});
+
+//  MapWhen METHODU ; GELEN REQUESTIN HERHANGI BIR OZELIGINE GORE ISLEM YAPAR
+
+app.MapWhen(c => c.Request.Method == "GET", builder =>
+{
+    builder.Use(async (context, task) =>
+    {
+        Console.WriteLine("START USE MW");
+        await task.Invoke();
+        Console.WriteLine("STOP USE MW");
+    });
+});
+
+//CUSTOM MIDDLEWARE
+
+app.UseHello();
