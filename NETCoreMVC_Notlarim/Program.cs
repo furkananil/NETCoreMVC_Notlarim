@@ -3,12 +3,30 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 using NETCoreMVC_Notlarim.Constraints;
 using NETCoreMVC_Notlarim.Extensions;
 using NETCoreMVC_Notlarim.Handlers;
+using NETCoreMVC_Notlarim.Services;
+using NETCoreMVC_Notlarim.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Program>());
 
 builder.Services.Configure<RouteOptions>(options => options.ConstraintMap.Add("custom", typeof(CustomConstraint)));
+
+
+//DEP.INJ VE IOC
+
+//builder.Services.Add(new ServiceDescriptor(typeof(ConsoleLog), new ConsoleLog())); //defult olarak singleton
+
+//builder.Services.Add(new ServiceDescriptor(typeof(TextLog), new TextLog(), ServiceLifetime.Transient));
+
+//builder.Services.AddSingleton<ConsoleLog>();
+// CTOR PARAMETRELI ISE
+//builder.Services.AddSingleton<ConsoleLog>(p => new ConsoleLog(5));
+
+// INTERFACEDEN SONRA SU SEKILDE ISLEM YAPARIZ
+builder.Services.AddScoped<ILog>(p => new ConsoleLog(5));
+builder.Services.AddSingleton<ILog, TextLog>(); // ctor default olmasi lazim
+builder.Services.AddSingleton<ILog, ConsoleLog>(p => new ConsoleLog(5));
 
 builder.Services.AddRazorPages();
 var app = builder.Build();
@@ -110,3 +128,5 @@ app.MapWhen(c => c.Request.Method == "GET", builder =>
 //CUSTOM MIDDLEWARE
 
 app.UseHello();
+
+

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NETCoreMVC_Notlarim.Services;
+using NETCoreMVC_Notlarim.Services.Interfaces;
 
 namespace NETCoreMVC_Notlarim.Controllers
 {
@@ -28,7 +30,7 @@ namespace NETCoreMVC_Notlarim.Controllers
             //
             //@model List<string>
             // var m = Model;
-            
+
             // LAYOUTTA
             // <partial name="/Views/Home/Partials/_SlaytPartial.cshtml" model="@ViewBag.Data / >
         }
@@ -43,5 +45,32 @@ namespace NETCoreMVC_Notlarim.Controllers
 
         //       CUSTOM ROUTE HANDLER ; HERHANGI BIR BELIRLENMIS ROUTE SEMASININ CONTROLLER
         //  SINIFLARINDAN ZIYADE IS MANTIGINDA KARSILANMASI VE ORADA IS GORUP RESPONSEUN DONULMESI OPERASYONUDUR.
+
+
+        //DEPENDENCY INJECTION VE IOC YAPILANMASI
+
+        private readonly ILog _log;
+        public HomeController(ILog log)
+        {
+            _log = log;
+        }
+        public IActionResult Log()
+        {
+            //ConsoleLog log = new();
+            //log.Log();
+            // BU SEKILDE HER SEFERINDE NEWLEME YAPMAMAMIZ GEREKMEKTEDIR.
+
+            _log.Log();
+            return View();
+        }
+        //ACTION BAZLI TALEPTE BULUNMA
+        //public IActionResult LogAction([FromServices] ILog log)
+        //{
+        //    log.Log();
+        //    return View();
+        //}
+        //VIEW DOSYALARINDA INJECT ISLEMI ICIN
+        // @inject ILog log
+        //ILE KULLANABILIRIZ
     }
 }
