@@ -77,6 +77,27 @@ app.UseEndpoints(endpoints =>
 
     endpoints.Map("example-route", new ExampleHandler().Handler()); // bu fonksiyon tarafindan karsilandi
     //endpoints.Map("image/{fileName}", new ImageHandler().Handler());
+
+
+    //AREA ROUTE;
+
+    endpoints.MapControllerRoute(
+        name: "areaDefault",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        ); //AREALARIN ESLESTIRILMESI ICIN :exist constrainti uygulanir
+
+    //AREAYA AIT OZEL ROTA BELIRLEMEMIZE YARAR
+    endpoints.MapAreaControllerRoute(
+        name: "yonetim",
+        areaName: "yonetim_paneli",
+        pattern: "admin/{controller=Home}/{action=Index}"
+        );
+
+    endpoints.MapAreaControllerRoute(
+        name: "fatura",
+        areaName: "fatura_yonetimi",
+        pattern: "fatura/{controller=Home}/{action=Index}"
+        );
 });
 app.Run();
 

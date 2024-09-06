@@ -14,4 +14,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\fatura_paneli\Data\" />
+    <Folder Include="Areas\fatura_paneli\Models\" />
+    <Folder Include="Areas\fatura_paneli\Views\" />
+    <Folder Include="Areas\yonetim_paneli\Data\" />
+    <Folder Include="Areas\yonetim_paneli\Models\" />
+    <Folder Include="Areas\yonetim_paneli\Views\" />
+  </ItemGroup>
+
 </Project>
