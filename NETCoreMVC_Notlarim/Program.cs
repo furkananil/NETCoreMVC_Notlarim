@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using NETCoreMVC_Notlarim.AutoMappers;
 using NETCoreMVC_Notlarim.Constraints;
 using NETCoreMVC_Notlarim.Extensions;
 using NETCoreMVC_Notlarim.Handlers;

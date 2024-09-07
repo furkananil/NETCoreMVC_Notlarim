@@ -41,23 +41,23 @@ namespace NETCoreMVC_Notlarim.Controllers
         public IActionResult Index2() 
         {
             //KOMPLEX TYPE ISE SERIALIZE EDILMESI GEREKLIDIR
-            var data = TempData["products"].ToString();
-            JsonSerializer.Deserialize<List<Product>>(data);
+            //var data = TempData["products"].ToString();
+            //JsonSerializer.Deserialize<List<Product>>(data);
             return View();
         }
         public IActionResult GetProducts()
         {
-            Product product = new Product()
-            {
-                ProductName = "A Product",
-                Quantity = 15
-            };
-            User user = new User()
-            {
-                Id = 1,
-                Name = "furkan",
-                LastName = "anil"
-            };
+            //Product product = new Product()
+            //{
+            //    ProductName = "A Product",
+            //    Quantity = 15
+            //};
+            //User user = new User()
+            //{
+            //    Id = 1,
+            //    Name = "furkan",
+            //    LastName = "anil"
+            //};
             //VIEWMODEL YONTEMI
 
             //UserProduct userProduct = new UserProduct()
@@ -69,9 +69,10 @@ namespace NETCoreMVC_Notlarim.Controllers
 
             //TUPLE YONTEMI
 
-            var userProduct = (product, user);
+            //var userProduct = (product, user);
 
-            return View(userProduct);
+            //return View(userProduct);
+            return View();
         }
 
         //public IActionResult CreateProduct()
@@ -323,7 +324,7 @@ namespace NETCoreMVC_Notlarim.Controllers
 
         // ASP.NET CORE DAHILI MODULUDUR.
         // ICERISINE KOYULACAK DEGERLERI UC FARKLI DAVRANISLA ALABILMEKTEDIR
-        
+
         //SINGLETON ;
         //  UYGULAMA BAZLI TEKIL NESNE OLUSTURUR. VE TUM TALEPLERDE O NESNEYI GONDERIR.
 
@@ -333,6 +334,23 @@ namespace NETCoreMVC_Notlarim.Controllers
         //TRANSIENT ;
         //  HER REQUESTIN HER TALEBINE KARSILIK BASKA NESNE URETIR VE GONDERIR.
 
+        //                              ----ViewModel & DTO Yapilanmasi-----
+
+        //  VIEWMODEL ;
+        //  BIRDEN FAZLA MODELI TEK BIR NESNE UZERINDE BIRLESTIRME GOREVI GOREN NESNEDIR.
+        //  KULLANICIYA SUNULACAK VERININ VIEWE UYGUN SEKILDE VIEWE VERI GONDERIMINI SAGLAR
+        //  METHOD BARINDIRABILIR
+        //  BIRDEN FAZLA DTOYU TEMSIL EDEBILIR
+
+        //  DTO (DATA TRANSFER OBJECT) ;
+        //  GENELLIKLE DBDEN GELEN VERININ TRANSFER MODELLEMESIDIR.
+        //  TRANSFER EDILECEK OLAN ILGILI VERIDEKI SADECE IHTIYAC OLUNAN DATALARI TEMSIL EDER
+        //  SAF VERIDIR
+
+        //KULLANICIDAN GELEN DATALARI VIEWMODEL ILE KARSILADIKTAN SONRA BU VIEWMODELDEKI VERILERI VERITABANINA KAYIT ETMEK ICIN 
+        //VIEWMODELI ENTITY MODELE DONUSTURMEMIZ GEREKECEKTIR
+        //BUNUN ICIN KULLANABILECEGIMIZ ISLEMLER ;
+        //MANUEL, IMPLICIT OPERATOR OVERLOAD, EXPLICIT OPERATOR OVERLOAD, REFLECTION ILE, AUTOMAPPER KUTUPHANESI ILE
 
 
 
