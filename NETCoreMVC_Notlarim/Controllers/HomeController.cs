@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NETCoreMVC_Notlarim.Models;
 using NETCoreMVC_Notlarim.Services;
 using NETCoreMVC_Notlarim.Services.Interfaces;
 
@@ -11,6 +12,11 @@ namespace NETCoreMVC_Notlarim.Controllers
     //[Route("anasayfa")]
     public class HomeController : Controller
     {
+        private readonly IConfiguration Config;
+        public HomeController(IConfiguration config)
+        {
+            Config = config;
+        }
         //[Route("in")]
         //[Route("in/{id?}")]
         //[Route("in/{id:int?}")]
@@ -50,6 +56,9 @@ namespace NETCoreMVC_Notlarim.Controllers
         //DEPENDENCY INJECTION VE IOC YAPILANMASI
 
         private readonly ILog _log;
+
+        
+
         public HomeController(ILog log)
         {
             _log = log;
@@ -72,5 +81,26 @@ namespace NETCoreMVC_Notlarim.Controllers
         //VIEW DOSYALARINDA INJECT ISLEMI ICIN
         // @inject ILog log
         //ILE KULLANABILIRIZ
+
+        // appsettings.json
+
+        //IConfiguration : ASP.NET Core IOC providerinde bulunan bir servistir.
+        //BU SERVIS UYGULAMADAKI APPSETTINGS.JSONDEKI HERHANGI BIR KONFIGURASYONU ELDE ETMEMIZI SAGLAYAN ARAYUZDUR
+        //CTORDAN DEP. INJ. ILE CEKERIZ
+        public IActionResult appsettings()
+        {
+            string metin = Config["OrnekMetin"];
+            var v = Config["Person"]; // OBJENIN ICINDE OBJE OLDUGU ICIN NULL DONER
+            var v2 = Config["Person:Name"];
+            var v3 = Config["Person:Surname"];
+
+            var v4 = Config.GetSection("Person");
+            var v5 = Config.GetSection("Person:Name");
+            var v6 = v5.Value;
+
+            var v7 = Config.GetSection("Person").Get(typeof(Person)); 
+            //appsettings.jsondaki Person verilerini Person classina ilgili proplara aktarir
+            return View();
+        }
     }
 }
