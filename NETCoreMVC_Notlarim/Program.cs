@@ -4,6 +4,7 @@ using NETCoreMVC_Notlarim.AutoMappers;
 using NETCoreMVC_Notlarim.Constraints;
 using NETCoreMVC_Notlarim.Extensions;
 using NETCoreMVC_Notlarim.Handlers;
+using NETCoreMVC_Notlarim.Models;
 using NETCoreMVC_Notlarim.Services;
 using NETCoreMVC_Notlarim.Services.Interfaces;
 
@@ -12,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Program>());
 
 builder.Services.Configure<RouteOptions>(options => options.ConstraintMap.Add("custom", typeof(CustomConstraint)));
-
+builder.Services.Configure<MailInfo>(builder.Configuration.GetSection("MailInfo"));
 
 //DEP.INJ VE IOC
 
