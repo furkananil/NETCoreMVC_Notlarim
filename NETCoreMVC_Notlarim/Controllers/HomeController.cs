@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using NETCoreMVC_Notlarim.Models;
 using NETCoreMVC_Notlarim.Services;
 using NETCoreMVC_Notlarim.Services.Interfaces;
+using System.Data.SqlClient;
 
 namespace NETCoreMVC_Notlarim.Controllers
 {
@@ -13,18 +14,18 @@ namespace NETCoreMVC_Notlarim.Controllers
     //[Route("anasayfa")]
     public class HomeController : Controller
     {
-        //private readonly IConfiguration Config;
-        //public HomeController(IConfiguration config)
-        //{
-        //    Config = config;
-        //}
+        private readonly IConfiguration Config;
+        public HomeController(IConfiguration config)
+        {
+            Config = config;
+        }
 
         //OPTIONS PATTERN
-        MailInfo _mailInfo; //MailInfo verileri direkt olarak gelir
-        public HomeController(IOptions<MailInfo> mailInfo)
-        {
-            _mailInfo = mailInfo.Value;
-        }
+        //MailInfo _mailInfo; //MailInfo verileri direkt olarak gelir
+        //public HomeController(IOptions<MailInfo> mailInfo)
+        //{
+        //    _mailInfo = mailInfo.Value;
+        //}
 
         //[Route("in")]
         //[Route("in/{id?}")]
@@ -118,6 +119,22 @@ namespace NETCoreMVC_Notlarim.Controllers
             //string port = Config["MailInfo:Port"];
 
             //MailInfo mailInfo = Config.GetSection("MailInfo").Get<MailInfo>();
+            return View();
+        }
+
+        //SECRETS.JSON
+
+        //DAGINIK VERILERIN HIZLI BIR SEKILDE TOPARLANMASI ICIN SQLCONNECTIONSTRINGBUILDER SINIFINI KULLAINIRIZ
+
+        public IActionResult secretsjson()
+        {
+            var connection = Config.GetConnectionString("SQL");
+            
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connection);
+            builder.UserID = Config["SQL:KullaniciAdi"];
+            builder.Password = Config["SQL:Sifre"];
+
+            var connectionstring = builder.ConnectionString;
             return View();
         }
     }
