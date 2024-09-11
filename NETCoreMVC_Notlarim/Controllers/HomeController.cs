@@ -66,12 +66,13 @@ namespace NETCoreMVC_Notlarim.Controllers
         //DEPENDENCY INJECTION VE IOC YAPILANMASI
 
         private readonly ILog _log;
-
+        private IWebHostEnvironment _webHostEnvironment;
         
 
-        public HomeController(ILog log)
+        public HomeController(ILog log, IWebHostEnvironment webHostEnvironment)
         {
             _log = log;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Log()
         {
@@ -129,12 +130,25 @@ namespace NETCoreMVC_Notlarim.Controllers
         public IActionResult secretsjson()
         {
             var connection = Config.GetConnectionString("SQL");
-            
+
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connection);
             builder.UserID = Config["SQL:KullaniciAdi"];
             builder.Password = Config["SQL:Sifre"];
 
             var connectionstring = builder.ConnectionString;
+            return View();
+        }
+
+        //ENVIRONMENT ; BIR WEB UYGULAMASINDA UYGULAMANIN BULUNDUGU ASAMALARA DAYALI DAVRANISI KONTROL ETMEK
+        //VE YONLENDIRMEK ISTEYEBILIRIZ BUNUN ICIN ENVIRONMENT VARIABLES YARARLANIRIZ.
+
+        public IActionResult ENVIRONMENT()
+        {
+            _webHostEnvironment.IsDevelopment();
+            _webHostEnvironment.IsEnvironment("Development");
+
+            var a = Config["a"]; 
+            //ENVIRONMENT DEGISKENLER SECRETS.JSON VE APPSETTINGS.JSON DEGERLERINI EZERLER.
             return View();
         }
     }
